@@ -1,0 +1,112 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="contanier text-center mt-5">
+    <div class="row">
+        <div class="col-md-12">
+        <br><br>
+        <h5>Lista de pedidos</h5>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="card col-md-2">
+            <h6 class="mt-4"><strong>Menú</strong></h6>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Clientes</li> 
+                <li class="list-group-item">Postres</li> 
+                <li class="list-group-item active">Pedidos</li> 
+            </ul>
+        </div>
+
+        <div class="col-md-10">
+
+            <div class="table-responsive">
+            {% if messages %}
+            <ul class="messages list-group mb-3">
+                 {% for message in messages %}
+                 <li {% if message.tags %} class="{{ message.tags}} list-group-item list-group-item-primary"{% endif %}>{{ message }}</li>
+                 {% endfor %}
+             </ul>
+            {% endif %}
+
+                <div align="left" class="btn_crear mb-3">
+                    <a href="nuevo" type="button" class="btn-btn-primary">crear</a>
+
+                </div>
+
+
+                <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th width="35%%">Nombre cliente</th>
+                        <th>fechapedido</th>
+                        <th>fechaentrega</th>
+                        <th>Postre</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if object_list %}
+                    {% for detallepedidos in object_list  %}
+                    <tr>
+                        <td>{{ detallepedidos.pedido.clientes }}</td>
+                        <td>{{ detallepedidos.pedido.fechapedido }}</td>
+                        <td>{{ detallepedidos.pedido.fechaentrega }}</td>
+                        <td>{{ detallepedidos.postre }}</td>
+                        <td>{{ detallepedidos.cantidad }}</td>
+                        <td>{{ detallepedidos.total }}</td>
+
+                        <td> 
+                        <form method="POST" action="eliminar/{{detallepedidos.id}}">
+                          {% csrf_token %} 
+                            <div class="btn-group">
+                            <a href="detalle/{{detallepedidos.id}}" title="Ver" class="btn btn-success">Ver</a>
+                                {% comment %} <a href="editar/{{detallepedidos.id}}" title="Editar" class="btn btn-primary">Editar</a> {% endcomment %}
+                                    <button class="btn btn-danger" onclick="return eliminar();" type="submit">
+                                    Eliminar
+                                    </button>
+                            </div>
+                        </form>
+                        </td> 
+                    </tr>
+                    {% endfor  %}
+                    {% else  %}
+                    <h1>No hay registro de postres</h1>
+                    {% endif %}   
+                <tbody>
+            </table>
+            </div> 
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function eliminar() {
+        var x = confirm("Eliminar producto?");
+        if (x)
+            return true;
+        else
+            return false;
+    }
+</script>
+
+
+{% comment %} <div class="dataTables_paginate paging_simple_numbers"
+    id="datatable-buttons_paginate">
+    <ul class="pagination">
+        {% if page_obj.has_previous%}
+        <li class="paginate_button page-item previous" id="datatable-buttons_previous">
+            <a href="?page={{ page_obj.previous_page_number }}" aria-controls="datatable-buttons" data-dt-idx="0" tabindex="0" class="page-link">Anterior</a>
+        </li>
+        {% endif %}
+         {% if page_obj.has_next%}
+        <li class="paginate_button page-item next" id="datatable-buttons_next">
+            <a href="?page={{ page_obj.next_page_number }}" aria-controls="datatable-buttons" data-dt-idx="0" tabindex="0" class="page-link">Siguiente</a>
+        </li>
+        {% endif %}  
+</div> {% endcomment %}
+{% endblock %}

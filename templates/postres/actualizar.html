@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main role="main">
+<br><br>
+    <div class="container text-center mt-5">
+    <br><br>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h1 style="font-size: 28px;">Postres</h1>
+        </div>
+
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <nav aria-label="breadcrumb mb-3">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="./">Postres</a></li>
+                        <li class="breadcrumb-item">Editar</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ object.nombre}}</li>
+                    </ol>
+                </nav>
+                <div class="formulario align="left" >
+                    <h4>Actualizar</h4>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %} 
+                        <div class="form-group">
+                            <label for="nombre" class="txt_negrita">Nombre</label>
+                            {{ form.nombre }}
+                        </div>
+                        <div class="form-group">
+                            <label for="precio" class="txt_negrita">Precio</label>
+                            {{ form.precio }}
+                        </div>
+                        <div class="form-group">
+                            <label for="stock" class="txt_negrita">Stock</label>
+                            {{ form.stock }}
+                        </div>
+                        <div class="form-group">
+                            <label for="img" class="txt_negrita">Imagen</label>
+                            {{ form.img }}
+                            <p class="txt_negrita">Imagen actual</label>
+                            <img src="{% static 'uploads/'%}{{ object.img }}" class="img-fluid" alt="{{object.nombre}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="Estado" class="txt_negrita">Estado</label>
+                            {{ form.Estado }}
+                        </div> 
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <a href="../" type="submit" class="btn btn-primary">Volver</a>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+ {% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+{% block head %} 
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+<main role="main">
+    <div class="row mb-5">
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <nav aria-label="breadcrumb mb-3">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="./">Pedidos</a></li>
+                        <li class="breadcrumb-item active">Crear</li>
+                    </ol>
+                </nav>
+                <div class="formulario align="left" >
+                    <h4>Crear</h4>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %} 
+                        <div class="form-group">
+                            <label for="clientes" class="txt_negrita">Nombre Cliente</label>
+                            {{ form2.clientes }}
+                        </div>
+                        <div class="form-group">
+                            <label for="fechapedido" class="txt_negrita">Fecha de pedido</label>
+                            {{ form2.fechapedido }}
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaentrega" class="txt_negrita">Fecha de entrega</label>
+                            {{ form2.fechaentrega }}
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaenvio" class="txt_negrita">Fecha de envio</label>
+                            {{ form2.fechaenvio }}
+                        </div>
+                        <div class="form-group">
+                            <label for="formaenvio" class="txt_negrita">Forma de envio</label>
+                            {{ form2.formaenvio }}
+                        </div>
+                        <div class="form-group">
+                            <label for="destinatario" class="txt_negrita">Destinatario</label>
+                            {{ form2.destinatario }}
+                        </div> 
+                        <div class="form-group">
+                            <label for="direcciondestinatario" class="txt_negrita">Dirección destinatario</label>
+                            {{ form2.direcciondestinatario }}
+                        </div> 
+                        <div class="form-group">
+                            <label for="ciudaddestinatario" class="txt_negrita">Ciudad destinatario</label>
+                            {{ form2.ciudaddestinatario }}
+                        </div> 
+                        <div class="form-group">
+                            <label for="postre" class="txt_negrita">Valor Postre</label>
+                            <input type="number" class="form-control" name="id_precio" id="id_precio"></input>
+                            {% comment %} {{ form.postre }}  {% endcomment %}
+                        </div> 
+                        <div class="form-group">
+                            <label for="cantidad" class="txt_negrita">Cantidad</label>
+                            <input type="number" class="form-control" name="id_cantidad" id="id_cantidad"></input>
+                            {% comment %} {{ form.cantidad }} {% endcomment %}
+                        <div class="form-group">
+                            <label for="descuento" class="txt_negrita">Descuento</label>
+                            <input type="number" class="form-control" name="id_descuento" id="id_descuento"></input>
+                            {% comment %} {{ form.descuento }} {% endcomment %}
+                        </div> 
+                        <div class="form-group">
+                            <label for="iva" class="txt_negrita">Iva</label>
+                            <input type="number" class="form-control" name="id_iva" id="id_iva"></input>
+                            {% comment %} {{ form.iva }} {% endcomment %}
+                        </div> 
+                        <div class="form-group">
+                            <label for="subtotal" class="txt_negrita">Subtotal</label>
+                            <input type="number" class="form-control" name="id_subtotal" id="id_subtotal"></input>
+                            {% comment %} {{ form.subtotal }} {% endcomment %}
+                        </div> 
+                        <div class="form-group">
+                            <label for="total" class="txt_negrita">Total</label>
+                            <input type="number" class="form-control" name="id_total" id="id_total"></input>
+                            {% comment %} {{ form.total }} {% endcomment %}
+                        </div> 
+
+                        <button type="button" class="btn btn-primary" onclick="Calcular()">Calcular</button>
+
+
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                        <a href="./" type="submit" class="btn btn-primary">Cancelar</a>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+<script src="{% static 'js/form.js' %}"></script>
+
+ {% endblock %}
