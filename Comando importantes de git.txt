@@ -1,0 +1,25 @@
+git config --global user.name "user name" ( nombre usuario para todos los proyectos git en nuestro equipo)
+git config --global user.email "user email" ( correo de usuario para todos los proyectos git en nustro equipo) 
+git config --list(muestra la configuración de nuestro git)
+git init (inicia un repositorio en una carpeta)
+rm -rf .git (eliminar el archivo .init creado por git)
+git add name_file (adiciona un archivo al stagin area o área de preparación)
+git add . (adiciona al staging area, todos los archivos al área de preparación)
+git rm -r --cached name_file ( quita del staging area los elementos que le indicamos)
+git commit -m "commentary"
+git remote add "repository" "url-git" ( git remote add origin "https://github.com/krlosjn/reposteria_uno.git")
+git remote (muestra el nombre del repositorio)
+git push -u "repository" "branch" (git push origin master)
+
+git pull "repository" "branch" (actualiza un repostiorio  local desde el remoto, podemos elegir la rama a la cual hacer la update)
+git revert (codigo del commit que queremos borrar, realmente parece que lo sobrescribe)
+gut branch ( muestra las ramas actuales)
+git merge "brach" (fusiona una rama a otra) 
+git log --oneline(muestra commits por líneas)
+git pull --all (unifica todas las ramas)
+crear otras ramas
+git checkout -b "branch name " (me crea otra rama)
+git checkout master (cambia a la rama principal)
+git branch -d "branch name" (borra la rama seleccionada)
+
+importante cuando tenemos dos ramas, y queremos subirla al repositorio remoto, es importante unirlas se hace con el comando git merge
